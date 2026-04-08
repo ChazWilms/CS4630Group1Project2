@@ -7,7 +7,7 @@ sns.set(style="whitegrid", context="talk")
 
 #Load Data
 X_2 = pd.read_csv("../outputs/X_pca_2.csv").values
-labels = pd.read_csv("../outputs/labels_PCA_2_k2.csv").values.flatten()
+labels = pd.read_csv("../labels/labels_PCA_2_k2.csv").values.flatten()
 
 raw_results = pd.read_csv("../outputs/clustering_raw_results.csv")
 pca_results = pd.read_csv("../outputs/clustering_pca_results.csv")
@@ -29,7 +29,7 @@ plt.ylabel("Principal Component 2")
 
 plt.colorbar(scatter, label="Cluster")
 plt.tight_layout()
-plt.savefig("../outputs/pca_2d_clusters_advanced.png")
+plt.savefig("../figures/pca_2d_clusters_advanced.png")
 plt.show()
 
 #2. Elbow Plot (Raw vs PCA)
@@ -46,7 +46,7 @@ plt.xlabel("Number of Clusters (k)")
 plt.ylabel("Inertia")
 plt.legend()
 plt.tight_layout()
-plt.savefig("../outputs/elbow_comparison.png")
+plt.savefig("../figures/elbow_comparison.png")
 plt.show()
 
 #3. Silhouette Score Comparison
@@ -63,7 +63,7 @@ plt.xlabel("k")
 plt.ylabel("Silhouette Score")
 plt.legend()
 plt.tight_layout()
-plt.savefig("../outputs/silhouette_comparison.png")
+plt.savefig("../figures/silhouette_comparison.png")
 plt.show()
 
 #4. Davies-Bouldin Index
@@ -80,7 +80,7 @@ plt.xlabel("k")
 plt.ylabel("DB Index (Lower is Better)")
 plt.legend()
 plt.tight_layout()
-plt.savefig("../outputs/db_index_comparison.png")
+plt.savefig("../figures/db_index_comparison.png")
 plt.show()
 
 #5. Runtime Comparison
@@ -97,7 +97,7 @@ plt.xlabel("k")
 plt.ylabel("Seconds")
 plt.legend()
 plt.tight_layout()
-plt.savefig("../outputs/runtime_comparison.png")
+plt.savefig("../figures/runtime_comparison.png")
 plt.show()
 
 #6. Variance Explained Curve
@@ -120,5 +120,5 @@ plt.ylabel("Cumulative Variance")
 
 plt.legend()
 plt.tight_layout()
-plt.savefig("../outputs/variance_explained.png")
+plt.savefig("../figures/variance_explained.png")
 plt.show()

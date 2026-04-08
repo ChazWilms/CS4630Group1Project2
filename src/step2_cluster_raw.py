@@ -17,7 +17,7 @@ for k in range(2, 10):
     inertias.append(res["inertia"])
 
     # Save labels
-    pd.Series(res["labels"]).to_csv(f"../outputs/labels_raw_k{k}.csv", index=False)
+    pd.Series(res["labels"]).to_csv(f"../labels/labels_raw_k{k}.csv", index=False)
 
     results.append({
         "dataset": "RAW",
@@ -37,7 +37,7 @@ plt.plot(range(2, 10), inertias, marker='o')
 plt.title("Elbow Method (Raw Data)")
 plt.xlabel("k")
 plt.ylabel("Inertia")
-plt.savefig("../outputs/elbow_raw.png")
+plt.savefig("../figures/elbow_raw.png")
 plt.close()
 
 print("Step 2 complete.")
