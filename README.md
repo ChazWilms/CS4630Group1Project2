@@ -39,12 +39,12 @@ CS4630Group1Project2/
 │   ├── clustering.py           # Core k-Means logic and metric calculations
 │   ├── pca_module.py           # PCA transformation functions
 │   ├── preprocessing.py        # Data loading and scaling functions
-│   ├── Step1_preprocessing.py  # Phase 1: Subsampling and Standard Scaling
-│   ├── Step2_cluster_raw.py    # Phase 2: k-Means on 28D feature space
-│   ├── Step3_pca.py            # Phase 3: Dimensionality reduction (2, 5, 10 components)
-│   ├── Step4_cluster_pca.py    # Phase 4: k-Means on PCA-reduced data
-│   ├── Step5_visualization.py  # Phase 5: Analytical plotting and comparisons
-│   └── Step6_combine.py        # Phase 6: Result aggregation
+│   ├── step1_preprocess.py     # Phase 1: Subsampling and Standard Scaling
+│   ├── step2_cluster_raw.py    # Phase 2: k-Means on 28D feature space
+│   ├── step3_pca.py            # Phase 3: Dimensionality reduction (2, 5, 10 components)
+│   ├── step4_cluster_pca.py    # Phase 4: k-Means on PCA-reduced data
+│   ├── step5_visualization.py  # Phase 5: Analytical plotting and comparisons
+│   └── step6_combine.py        # Phase 6: Result aggregation and analysis summary
 ├── .gitignore
 └── README.md
 ```
@@ -83,7 +83,7 @@ Run all scripts from the **project root directory** (CS4630Group1Project2/) unle
 
 **Subsample and scale the dataset:** 
 ```bash
-python src/Step1_preprocessing.py
+python src/step1_preprocess.py
 ```
 - Input: `data/HIGGS.csv.gz`
 - Output: `outputs/X_scaled.csv`, `outputs/y.csv`
@@ -94,7 +94,7 @@ python src/Step1_preprocessing.py
 ### Phase 2 - Raw Feature Clustering
 **Run k-Means on the full 28-dimensional space:**
 ```bash
-python src/Step2_cluster_raw.py
+python src/step2_cluster_raw.py
 ```
 - Input: `outputs/X_scaled.csv`
 - Output: `outputs/clustering_raw_results.csv`, `figures/elbow_raw.png`
@@ -105,7 +105,7 @@ python src/Step2_cluster_raw.py
 ### Phase 3 - Dimensionality Reduction
 **Apply PCA to reduce feature space:**
 ```bash
-python src/Step3_pca.py
+python src/step3_pca.py
 ```
 - Input: `outputs/X_scaled.csv`
 - Output: `outputs/X_pca_2.csv`, `outputs/X_pca_5.csv`, `outputs/X_pca_10.csv`
@@ -116,7 +116,7 @@ python src/Step3_pca.py
 ### Phase 4 - PCA Feature Clustering
 **Run k-Means on reduced datasets:**
 ```bash
-python src/Step4_cluster_pca.py
+python src/step4_cluster_pca.py
 ```
 - Input: All PCA-reduced CSVs in `outputs/`
 - Output: `outputs/clustering_pca_results.csv`
@@ -127,7 +127,7 @@ python src/Step4_cluster_pca.py
 ### Phase 5 - Visualization & Analysis
 **Generate comparison plots:**
 ```bash
-python src/Step5_visualization.py
+python src/step5_visualization.py
 ```
 - Outputs: 
     - `pca_2d_clusters_advanced.png` (Visual 2D cluster separation)

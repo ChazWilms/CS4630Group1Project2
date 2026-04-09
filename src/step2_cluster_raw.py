@@ -26,7 +26,8 @@ for k in range(2, 10):
         "silhouette": res["silhouette"],
         "davies_bouldin": res["davies_bouldin"],
         "inertia": res["inertia"],
-        "iterations": res["iterations"]
+        "iterations": res["iterations"],
+        "mean_centroid_separation": res["mean_centroid_separation"]
     })
 
 # Save results

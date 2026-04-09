@@ -27,7 +27,8 @@ for name, data in datasets.items():
             "silhouette": res["silhouette"],
             "davies_bouldin": res["davies_bouldin"],
             "inertia": res["inertia"],
-            "iterations": res["iterations"]
+            "iterations": res["iterations"],
+            "mean_centroid_separation": res["mean_centroid_separation"]
         })
 
 pd.DataFrame(results).to_csv("../outputs/clustering_pca_results.csv", index=False)

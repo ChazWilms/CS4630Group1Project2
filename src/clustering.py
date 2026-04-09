@@ -1,11 +1,20 @@
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, davies_bouldin_score
+from itertools import combinations
 import numpy as np
 import time
 
 def evaluate_subset(X, labels, sample_size=10000):
     idx = np.random.choice(len(X), min(sample_size, len(X)), replace=False)
     return X[idx], labels[idx]
+
+def mean_inter_centroid_distance(centroids):
+    """Mean pairwise Euclidean distance between cluster centroids (separation)."""
+    dists = [
+        np.linalg.norm(centroids[i] - centroids[j])
+        for i, j in combinations(range(len(centroids)), 2)
+    ]
+    return float(np.mean(dists))
 
 def run_kmeans(X, k):
     start = time.time()
@@ -20,6 +29,7 @@ def run_kmeans(X, k):
 
     sil = silhouette_score(X_sample, labels_sample)
     db = davies_bouldin_score(X_sample, labels_sample)
+    separation = mean_inter_centroid_distance(model.cluster_centers_)
 
     return {
         "k": k,
@@ -28,5 +38,6 @@ def run_kmeans(X, k):
         "davies_bouldin": db,
         "inertia": model.inertia_,
         "iterations": model.n_iter_,
+        "mean_centroid_separation": separation,
         "labels": labels
     }
