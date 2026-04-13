@@ -1,0 +1,8 @@
+# Large data files
+data/HIGGS.csv.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
