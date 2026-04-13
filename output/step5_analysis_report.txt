@@ -1,0 +1,44 @@
+REQUIRED ANALYSES
+============================================================
+
+1. Does PCA improve cluster separation?
+   YES. Silhouette score improves from 0.1965 (Raw 28-D)
+   to 0.4798 (PCA 2-D) — a 144% relative gain.
+   Davies-Bouldin index drops from 2.6953 to 0.8856
+   (lower is better), confirming tighter, better-separated clusters after PCA.
+   The effect is strongest at 2 components and diminishes as more
+   components are retained.
+
+2. Does k-Means converge faster after PCA?
+   YES. On raw 28-D data, k-Means needed 20 iterations and 2.37s.
+   On PCA 2-D: 5 iterations, 1.59s.
+   On PCA 5-D: 14 iterations, 1.89s.
+   On PCA 10-D: 6 iterations, 1.85s.
+   PCA reduces both the per-iteration cost (fewer dims) and typically
+   the number of iterations needed to converge.
+
+3. Are clusters more meaningful in lower-dimensional space?
+   Measured against true signal/background labels:
+     Raw 28-D: purity=0.5475, ARI=0.0076, NMI=0.0047
+     PCA 2-D : purity=0.5470, ARI=0.0073, NMI=0.0046
+     PCA 5-D : purity=0.5473, ARI=0.0075, NMI=0.0047
+     PCA 10-D: purity=0.5473, ARI=0.0075, NMI=0.0046
+   k-Means clusters on PCA data score better on internal metrics
+   (silhouette, DB), meaning the clusters are more compact and separated.
+   However, none of the unsupervised clusterings align strongly with the true
+   Higgs signal/background labels (ARI ~ 0, NMI ~ 0). This suggests the
+   natural geometric clusters in HIGGS do not correspond to the physics
+   class labels — supervised learning (Project-3) will be required to
+   separate signal from background.
+
+4. How many components preserve most variance?
+   Cumulative explained variance:
+     2  components: 21.5%
+     5  components: 37.8%
+     10 components: 59.7%
+     17 components reach 80% variance
+     20 components reach 90% variance
+     23 components reach 95% variance
+   The HIGGS feature space has high intrinsic dimensionality — no single
+   component dominates (PC1 only explains 14.9%). Retaining
+   ~20 components captures 90% of the variance.
